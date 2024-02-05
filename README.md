@@ -16,7 +16,7 @@ Uses Socket.io for real time communication and stores user details in encrypted 
 Clone the project
 
 ```bash
-  
+  https://github.com/pavannaik321/chattingo.git
 ```
 
 Go to the project directory
