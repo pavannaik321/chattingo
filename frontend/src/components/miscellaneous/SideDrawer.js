@@ -30,6 +30,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import ChatLoading from "../ChatLoading";
 import UserListitem from "../UserAvatar/UserListitem";
+import { getSender } from "../../config/ChatLogics";
 
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
@@ -38,7 +39,14 @@ const SideDrawer = () => {
   const [loadingChat, setLoadingChat] = useState();
   const history = useHistory();
   const tost = useToast();
-  const { user, setSelectedChat, chats, setChats } = ChatState();
+  const {
+    user,
+    setSelectedChat,
+    chats,
+    setChats,
+    notification,
+    setNotification,
+  } = ChatState();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
@@ -150,10 +158,50 @@ const SideDrawer = () => {
         </Box>
         <div>
           <Menu>
-            <MenuButton p={"1"}>
-              <BellIcon fontSize={"2xl"} m={"1"} />
+            <MenuButton
+              className={notification.length ? "heartbeat-container" : " "}
+              p={"1"}
+            >
+              {notification.length ? (
+                <BellIcon
+                  style={{
+                    animation: "heartbeat 1.5s infinite", // Apply heartbeat animation
+                  }}
+                  color="red.500"
+                  fontSize={"3xl"}
+                  mr={"3"}
+                />
+              ) : (
+                <BellIcon fontSize={"3xl"} mr={"3"} />
+              )}
             </MenuButton>
-            {/* <MenuList></MenuList> */}
+            <MenuList pl={2}>
+              {!notification.length && "No New Message"}
+              {notification.map(
+                (notif) => (
+                  console.log(notification),
+                  (
+                    <MenuItem
+                      key={notif._id}
+                      onClick={() => {
+                        setSelectedChat(notif.chat);
+                        // remove notification from array of notifications
+                        setNotification(
+                          notification.filter((n) => n !== notif)
+                        );
+                      }}
+                    >
+                      {notif.chat.isGroupChat
+                        ? `New Message in ${notification.chat.chatName}`
+                        : `New Message form ${getSender(
+                            user,
+                            notif.chat.users
+                          )}`}
+                    </MenuItem>
+                  )
+                )
+              )}
+            </MenuList>
           </Menu>
 
           <Menu>

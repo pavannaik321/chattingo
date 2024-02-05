@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon backend/server.js"
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "build": "npm install && npm install--prefix frontend && npm run build --prefix frontend"
   },
   "author": "pavan naik",
   "license": "ISC",
@@ -20,6 +22,7 @@
     "framer-motion": "^10.18.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.1.1",
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "socket.io": "^4.7.4"
   }
 }

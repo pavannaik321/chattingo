@@ -35,7 +35,7 @@ const GroupChatModal = ({ children }) => {
   const { user, chats, setChats } = ChatState();
 
   const handerSearch = async (query) => {
-    console.log(search);
+    // console.log(search);
     if (!query.target.value) {
       return;
     }
@@ -50,8 +50,8 @@ const GroupChatModal = ({ children }) => {
       const { data } = await axios.get(`/api/user?search=${search}`, config);
       setloading(false);
       setsearchResult(data);
-      console.log(search);
-      console.log(data);
+      // console.log(search);
+      // console.log(data);
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -84,8 +84,8 @@ const GroupChatModal = ({ children }) => {
   };
 
   const handelSubmit = async () => {
-    console.log(groupChatName);
-    console.log(selectedUsers);
+    // console.log(groupChatName);
+    // console.log(selectedUsers);
     if (!groupChatName || !selectedUsers) {
       toast({
         title: "Please fill all the fields",
