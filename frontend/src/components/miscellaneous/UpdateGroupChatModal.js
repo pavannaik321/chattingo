@@ -21,7 +21,7 @@ import axios from "axios";
 import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../UserAvatar/UserBadgeitem";
 import UserListitem from "../UserAvatar/UserListitem";
-const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
+const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessage }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [groupChatName, setGroupChatName] = useState();
   const [search, setSearch] = useState("");
@@ -32,7 +32,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
   const toast = useToast();
 
   const { selectedChat, setSelectedChat, user } = ChatState();
-  console.log(selectedChat);
+  // console.log(selectedChat);
   // logic for adding user
   const handleAddUser = async (user1) => {
     console.log("function called");
@@ -138,6 +138,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
         });
         setSearchResult([]);
         user1._id === user._id ? setSelectedChat() : setSelectedChat(data);
+        fetchMessage();
         setFetchAgain(!fetchAgain);
         setLoading(false);
       } catch (error) {

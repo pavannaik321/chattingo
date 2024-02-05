@@ -16,7 +16,7 @@ const ChatProvider = ({ children }) => {
     setUser(userInfo);
 
     if (!userInfo) {
-      // history.push("/");
+      history.push("/");
     } else {
       console.log("user success full");
     }
