@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "npm run build && npm run server ",
-    "server": "nodemon backend/server.js",
+    "server": "node backend/server.js",
     "build": "npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "pavan naik",
