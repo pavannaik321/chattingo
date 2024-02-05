@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "npm run build && npm run server ",
     "server": "nodemon backend/server.js",
-    "build": "npm install && npm install--prefix frontend && npm run build --prefix frontend"
+    "build": "npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "pavan naik",
   "license": "ISC",
